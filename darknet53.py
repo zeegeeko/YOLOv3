@@ -44,5 +44,7 @@ def darknet53_network(inputs):
     #4x
     inp = construct_layers(inp, 512, 1, 1, 4, True)
 
+    #average pooling
+
     #returns darknet 53 model
     return inp
