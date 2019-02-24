@@ -62,7 +62,7 @@ def darknet53(inputs, is_training):
     inp = construct_layers(inp, 1024, 3, 2, 1, False, is_training)
 
     #4x
-    inp = construct_layers(inp, 512, 1, 1, 4, True, is_trainings)
+    inp = construct_layers(inp, 512, 1, 1, 4, True, is_training)
 
     #average pooling
 
