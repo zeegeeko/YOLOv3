@@ -8,6 +8,11 @@ BNEPSILON = 1e-05
 BNDECAY = 0.99
 LRELUALPHA = 0.1
 
+#Fixed padding
+def fixed_padding(inputs):
+    #Need to implement fixed padding if kernel_size > 1
+    pass
+
 #Constructs Blocks of Convolution Layers with residuals.
 def construct_layers(inputs, numfilters, size, stride=1, mult=1, block=True, is_training=False):
     inp = inputs
