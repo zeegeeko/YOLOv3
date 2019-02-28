@@ -22,9 +22,9 @@ def residual_block(inputs, numfilters, size, stride=1, mult=1, is_training=False
         inp = tf.layers.conv2d(inputs=inp, filters=numfilters * 2, kernel_size=[3, 3], strides=(stride, stride), padding="same")
         #batch normalization
         inp = tf.layers.batch_normalization(
-            inputs=inputs, axis=1 if data_format == 'channels_first' else 3,
-            momentum=BNDECAY, epsilon=BNEPSILON,
-            scale=True, training=is_training)
+            inputs=inputs, axis=1 if data_format == 'NCHW' else 3,
+            momentum=BNDECAY, epsilon=BNEPSILON, scale=True,
+            training=is_training, fused=None)
         #leaky ReLU
         inp = tf.nn.leaky_relu(inputs, alpha=LRELUALPHA)
         #Residual
@@ -38,9 +38,9 @@ def conv_block(inputs, numfilters, size, stride=1, is_training=False):
     inp = tf.layers.conv2d(inputs=inp, filters=numfilters, kernel_size=[size, size], strides=(stride, stride), padding="same")
     #batch normalization
     inp = tf.layers.batch_normalization(
-            inputs=inputs, axis=1 if data_format == 'channels_first' else 3,
-            momentum=BNDECAY, epsilon=BNEPSILON,
-            scale=True, training=is_training)
+            inputs=inputs, axis=1 if data_format == 'NCHW' else 3,
+            momentum=BNDECAY, epsilon=BNEPSILON, scale=True,
+            training=is_training, fused=None)
     #leaky ReLU
     inp = tf.nn.leaky_relu(inputs, alpha=LRELUALPHA)
 
