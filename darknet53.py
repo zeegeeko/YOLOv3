@@ -8,10 +8,32 @@ BNEPSILON = 1e-05
 BNDECAY = 0.99
 LRELUALPHA = 0.1
 
-#Fixed padding
-def fixed_padding(inputs):
-    #Need to implement fixed padding if kernel_size > 1
-    pass
+#Official fixed padding from TF Resnet implementation
+def fixed_padding(inputs, kernel_size, data_format):
+  """Pads the input along the spatial dimensions independently of input size.
+  Args:
+    inputs: A tensor of size [batch, channels, height_in, width_in] or
+      [batch, height_in, width_in, channels] depending on data_format.
+    kernel_size: The kernel to be used in the conv2d or max_pool2d operation.
+                 Should be a positive integer.
+    data_format: The input format ('channels_last' or 'channels_first').
+  Returns:
+    A tensor with the same format as the input with the data either intact
+    (if kernel_size == 1) or padded (if kernel_size > 1).
+  """
+  pad_total = kernel_size - 1
+  pad_beg = pad_total // 2
+  pad_end = pad_total - pad_beg
+
+  if data_format == 'channels_first':
+    padded_inputs = tf.pad(tensor=inputs,
+                           paddings=[[0, 0], [0, 0], [pad_beg, pad_end],
+                                     [pad_beg, pad_end]])
+  else:
+    padded_inputs = tf.pad(tensor=inputs,
+                           paddings=[[0, 0], [pad_beg, pad_end],
+                                     [pad_beg, pad_end], [0, 0]])
+  return padded_inputs
 
 #Helper for constructing residual block
 def residual_block(inputs, numfilters, size, stride=1, mult=1, is_training=False):
