@@ -4,9 +4,19 @@ import tensorflow as tf
 import numpy as np
 
 #global
-BNEPSILON = 1e-05
-BNDECAY = 0.99
+_BATCH_NORM_EPSILON = 1e-05
+_BATCH_NORM_DECAY = 0.99
 LRELUALPHA = 0.1
+
+#Batch norm helper from Official TF Resnet implementation
+def batch_norm(inputs, training, data_format):
+  """Performs a batch normalization using a standard set of parameters."""
+  # We set fused=True for a significant performance boost. See
+  # https://www.tensorflow.org/performance/performance_guide#common_fused_ops
+  return tf.layers.batch_normalization(
+      inputs=inputs, axis=1 if data_format == 'channels_first' else 3,
+      momentum=_BATCH_NORM_DECAY, epsilon=_BATCH_NORM_EPSILON, center=True,
+      scale=True, training=training, fused=True)
 
 #Official fixed padding from TF Resnet implementation
 def fixed_padding(inputs, kernel_size, data_format):
