@@ -46,7 +46,7 @@ def conv_block(inputs, numfilters, size, stride=1, is_training=False):
 
     return inp
 
-#Constructs the Darknet 53 network
+#Constructs the Darknet 53 model
 def darknet53(inputs, is_training):
     inp = inputs
 
@@ -64,11 +64,13 @@ def darknet53(inputs, is_training):
 
     #8x
     inp = residual_block(inp, 128, 1, 1, 8, is_training)
+    #route for concatenating upsampled activations before 4th downsample
     route1 = inp
     inp = conv_block(inp, 512, 3, 2, is_training)
 
     #8x
     inp = residual_block(inp, 256, 1, 1, 8, is_training)
+    #route for concatenating upsampled activations before 5th downsample
     route2 = inp
     inp = conv_block(inp, 1024, 3, 2, is_training)
 
@@ -77,5 +79,5 @@ def darknet53(inputs, is_training):
 
     #average pooling
 
-    #returns darknet 53 model
+    #returns darknet 53 model with routes before 4th and 5th downsample
     return route1, route2, inp
