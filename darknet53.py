@@ -62,31 +62,38 @@ def conv2d_fixed_padding(inputs, filters, kernel_size, strides, data_format):
 
 
 #Helper for constructing residual block
-def residual_block(inputs, numfilters, size, stride=1, mult=1, is_training=False, data_format):
-    inp = inputs
+def residual_block(inputs, numfilters, stride=1, mult=1, is_training=False, data_format):
+    res = inputs
 
     #Loop for constructing residual blocks
     for i in mult:
-        inp = tf.layers.conv2d(inputs=inp, filters=numfilters * 2, kernel_size=[3, 3], strides=(stride, stride), padding="same")
+        inputs = conv2d_fixed_padding(inputs, numfilters, 1, stride, data_format)
         #batch normalization before ReLU
-        inp = batch_norm(inp, is_training, data_format)
+        inputs = batch_norm(inputs, is_training, data_format)
         #leaky ReLU
-        inp = tf.nn.leaky_relu(inputs, alpha=LRELUALPHA)
-        #Residual
-        inp = inp + inputs
+        inputs = tf.nn.leaky_relu(inputs, alpha=LRELUALPHA)
 
-    return inp
+        inputs = conv2d_fixed_padding(inputs, 2 * numfilters, 3, stride, data_format)
+        #batch normalization before ReLU
+        inputs = batch_norm(inputs, is_training, data_format)
+        #leaky ReLU
+        inputs = tf.nn.leaky_relu(inputs, alpha=LRELUALPHA)
+
+        #Residual
+        inputs += res
+
+    return inputs
 
 #Helper for convolution block
 def conv_block(inputs, numfilters, size, stride=1, is_training=False, data_format):
-    inp = inputs
-    inp = tf.layers.conv2d(inputs=inp, filters=numfilters, kernel_size=[size, size], strides=(stride, stride), padding="same")
+    #convolution
+    inputs = conv2d_fixed_padding(inputs, numfilters, size, stride, data_format)
     #batch normalization before ReLU
-    inp = batch_norm(inp, is_training, data_format)
+    inputs = batch_norm(inputs, is_training, data_format)
     #leaky ReLU
-    inp = tf.nn.leaky_relu(inputs, alpha=LRELUALPHA)
+    inputs = tf.nn.leaky_relu(inputs, alpha=LRELUALPHA)
 
-    return inp
+    return inputs
 
 #Constructs the Darknet 53 model
 def darknet53(inputs, is_training, data_format):
