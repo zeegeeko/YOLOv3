@@ -97,7 +97,16 @@ def conv_block(inputs, numfilters, size, stride=1, is_training=False, data_forma
 
 #Constructs the Darknet 53 model
 def darknet53(inputs, is_training, data_format):
-
+"""Constructs the Darknet53 Feature Extractor
+Params:
+    inputs: input tensor
+    is_training: bool, True if in training mode
+    data_format: Channel First or Channel Last
+Returns:
+    route1: shortcut before 4th downsample
+    route2: shortcut before 5th downsample
+    darknet53 output
+"""
     #inputs, numfilters, size, stride=1, mult=1, is_training
     inputs = conv_block(inputs, 32, 3, 1, is_training, data_format)
     inputs = conv_block(inputs, 64, 3, 2, is_training, data_format)
