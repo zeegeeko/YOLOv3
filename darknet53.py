@@ -97,36 +97,35 @@ def conv_block(inputs, numfilters, size, stride=1, is_training=False, data_forma
 
 #Constructs the Darknet 53 model
 def darknet53(inputs, is_training, data_format):
-    inp = inputs
 
     #inputs, numfilters, size, stride=1, mult=1, is_training
-    inp = conv_block(inp, 32, 3, 1, is_training, data_format)
-    inp = conv_block(inp, 64, 3, 2, is_training, data_format)
+    inputs = conv_block(inputs, 32, 3, 1, is_training, data_format)
+    inputs = conv_block(inputs, 64, 3, 2, is_training, data_format)
 
     # Residual Block 1x
-    inp = residual_block(inp, 32, 1, 1, 1, is_training, data_format)
-    inp = conv_block(inp, 128, 3, 2, is_training, data_format)
+    inputs = residual_block(inputs, 32, 1, 1, is_training, data_format)
+    inputs = conv_block(inputs, 128, 3, 2, is_training, data_format)
 
     # Residual Block 2x
-    inp = residual_block(inp, 64, 1, 1, 2, is_training, data_format)
-    inp = conv_block(inp, 256, 3, 2, is_training, data_format)
+    inputs = residual_block(inputs, 64, 1, 2, is_training, data_format)
+    inputs = conv_block(inputs, 256, 3, 2, is_training, data_format)
 
     # Residual Block 8x
-    inp = residual_block(inp, 128, 1, 1, 8, is_training, data_format)
+    inputs = residual_block(inputs, 128, 1, 8, is_training, data_format)
     #route for concatenating upsampled activations before 4th downsample
-    route1 = inp
-    inp = conv_block(inp, 512, 3, 2, is_training, data_format)
+    route1 = inputs
+    inputs = conv_block(inputs, 512, 3, 2, is_training, data_format)
 
     # Residual Block 8x
-    inp = residual_block(inp, 256, 1, 1, 8, is_training, data_format)
+    inputs = residual_block(inputs, 256, 1, 8, is_training, data_format)
     #route for concatenating upsampled activations before 5th downsample
-    route2 = inp
-    inp = conv_block(inp, 1024, 3, 2, is_training, data_format)
+    route2 = inputs
+    inputs = conv_block(inputs, 1024, 3, 2, is_training, data_format)
 
     # Residual Block 4x
-    inp = residual_block(inp, 512, 1, 1, 4, is_training, data_format)
+    inputs = residual_block(inputs, 512, 1, 4, is_training, data_format)
 
     #No average pooling, Softmax or connected layers
 
     #returns darknet 53 model with routes before 4th and 5th downsample
-    return route1, route2, inp
+    return route1, route2, inputs
