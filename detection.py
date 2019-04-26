@@ -11,6 +11,30 @@ Params:
     inputs: input tensor
     data_format: channel first or channel last
 Return:
-    upsampled feature map 
+    upsampled feature map
 """
     pass
+
+# x5 DBL (Darknet/Batch Norm/Leaky RELU) blocks
+def detection_block(inputs, numfilters, is_training, data_format):
+    """ Creates blocks of 5 conv2d blocks with batch norm and leaky relu for
+        Yolo detection layers
+    Params:
+        inputs: input tensor
+        is_training: bool, true if in training mode
+        data_format: channel first or channel last
+    Returns:
+        output: block output
+    """
+    #kernel size 1
+    inputs = conv_block(inputs, numfilters, 1, 1, is_training, data_format)
+    #kernel size 3
+    inputs = conv_block(inputs, 2 * numfilters, 3, 1, is_training, data_format)
+    #kernel size 1
+    inputs = conv_block(inputs, numfilters, 1, 1, is_training, data_format)
+    #kernel size 3
+    inputs = conv_block(inputs, 2 * numfilters, 3, 1, is_training, data_format)
+    #kernel size 1
+    inputs = conv_block(inputs, numfilters, 1, 1, is_training, data_format)
+
+    return inputs
