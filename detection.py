@@ -3,19 +3,38 @@
 #From YOLOv3 paper https://pjreddie.com/media/files/papers/YOLOv3.pdf
 ANCHORS = [(10,13),(16,30),(33,23),(30,61),(62,45),(59,119),(116,90),(156,198),(373,326)]
 
-#Helper Bilinear upsampling
-def upsample(inputs, size, data_format):
+#Helper Nearest Neighbor upsampling
+def upsample(inputs, shape, data_format):
     """ According to paper, previous feature maps are upsampled by 2x and then
-        merged by concatenation. This function upsamples feature maps using bilinear interpolation.
+        merged by concatenation. This helper upsamples feature maps using Nearest
+        Neighbor interpolation. Changed from Bilinear interpolation citing
+        https://itnext.io/implementing-yolo-v3-in-tensorflow-tf-slim-c3c55ff59dbe
     Params:
         inputs: input tensor
+        shape: route shape 
         data_format: channel first or channel last
     Return:
         upsampled feature map
     """
-    inputs = tf.image.resize_bilinear(inputs, (new_height, new_width), align_corners=False, name=None)
+    if data_format == 'channels_first':
+        inputs = tf.transpose(inputs, [0, 2, 3, 1])
 
+    if data_format == 'channels_first':
+        new_height = shape[3]
+        new_width = shape[2]
+    else:
+        new_height = shape[2]
+        new_width = shape[1]
+
+    inputs = tf.image.resize_nearest_neighbor(inputs, (new_height, new_width))
+
+    # back to NCHW if needed
+    if data_format == 'channels_first':
+        inputs = tf.transpose(inputs, [0, 3, 1, 2])
+
+    inputs = tf.identity(inputs, name='upsampled')
     return inputs
+
 
 # x5 DBL (Darknet/Batch Norm/Leaky RELU) blocks
 def detection_block(inputs, numfilters, is_training, data_format):
@@ -53,7 +72,6 @@ def concat_block(inputs, numfilters, is_training, data_format):
     Returns:
         Concatenated routes
     """
-
     #Upsample previous feature maps before concatenation
 
     pass
@@ -72,6 +90,6 @@ def output_block(inputs, numfilters, is_training, data_format):
     #last DBL block
     inputs = conv_block(inputs, 2 * numfilters, 3, 1, is_training, data_format)
 
-    #output layer
+    #output convolution layer
 
     pass
