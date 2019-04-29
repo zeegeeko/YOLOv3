@@ -11,7 +11,7 @@ def upsample(inputs, shape, data_format):
         https://itnext.io/implementing-yolo-v3-in-tensorflow-tf-slim-c3c55ff59dbe
     Params:
         inputs: input tensor
-        shape: route shape 
+        shape: route shape
         data_format: channel first or channel last
     Return:
         upsampled feature map
@@ -61,20 +61,25 @@ def detection_block(inputs, numfilters, is_training, data_format):
     return inputs
 
 
-def concat_block(inputs, numfilters, is_training, data_format):
+def concat_block(inputs, route, numfilters, is_training, data_format):
     """ Concatenates route from previous detector layers to route from
         Darknet53 layers
     Params:
         inputs: input tensor
+        route: route from darknet to be concatenated
         numfilters: number of filters for convolution
         is_training: bool, true if in training mode
         data_format: channel first or channel last
     Returns:
         Concatenated routes
     """
-    #Upsample previous feature maps before concatenation
+    #DBL
+    inputs = conv_block(inputs, numfilters, 1, 1, is_training, data_format)
+    #Upsample previous feature maps before concatenation. Match route shape
+    inputs = upsample(inputs, route.get_shape().as_list(), data_format)
+    #concatenation
+    return tf.concat([inputs, route], axis=(1 if data_format is "channels_first" else 3))
 
-    pass
 
 def output_block(inputs, numfilters, is_training, data_format):
     """ Last layers, DBL block and output convolution layers
