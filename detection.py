@@ -1,6 +1,7 @@
 """ Helpers for constructing the detection layers after darknet53 """
 
-#From YOLOv3 paper https://pjreddie.com/media/files/papers/YOLOv3.pdf
+#From YOLOv3 paper https://pjreddie.com/media/files/papers/YOLOv3.pdf, bounding box priors
+#dervived using k-means clustering on COCO dataset
 ANCHORS = [(10,13),(16,30),(33,23),(30,61),(62,45),(59,119),(116,90),(156,198),(373,326)]
 
 #Helper Nearest Neighbor upsampling
@@ -81,20 +82,38 @@ def concat_block(inputs, route, numfilters, is_training, data_format):
     return tf.concat([inputs, route], axis=(1 if data_format is "channels_first" else 3))
 
 
-def output_block(inputs, numfilters, is_training, data_format):
-    """ Last layers, DBL block and output convolution layers
+def output_block(inputs, numfilters, priors, numclasses, is_training, data_format):
+    """ Last layers, DBL block and output convolution layers.
     Params:
         inputs: input tensor
         numfilters: number of filters for convolution
+        priors: list of bounding box priors (Anchors)
+        numclasses: number of prediction classes (80 for COCO)
         is_training: bool, true if in training mode
         data_format: channel first or channel last
     Returns:
-        outputs
+        output prediction tensor
+        According to YOLOv3 paper the output tensor is 3-d of 3 box predictions per scale of
+        N × N × [3 * (4 + 1 + 80)] for the 4 bounding box offsets,1 objectness prediction,
+        and 80 (COCO dataset) class predictions.
     """
-
     #last DBL block
     inputs = conv_block(inputs, 2 * numfilters, 3, 1, is_training, data_format)
 
-    #output convolution layer
+    #output convolution layer [N, 3*85, W, H]
+    inputs = tf.layers.conv2d(inputs, filters=len(priors) * (5 + numclasses),
+                                kernel_size=1, strides=1,
+                                data_format=data_format, use_bias=True,
+                                bias_initializer=tf.zeros_initializer())
+
+    """
+        Notes from YOLOv3 paper
+        t_x, t_y, t_w, t_h, t_o = parameter predictions from Yolo
+        b_x = \sigma(t_x) + c_x  where c_x, c_y are the top left corner of grid cell of prior
+        b_y = \sigma(t_y) + c_y
+        b_w = p_{w}e^{t_w}     where p_w is the prior width
+        b_h = p_{h}e^{t_h}     where p_h is the prior height
+        \sigma(t_o) = box confidence score
+    """
 
     pass
