@@ -82,30 +82,54 @@ def concat_block(inputs, route, numfilters, is_training, data_format):
     return tf.concat([inputs, route], axis=(1 if data_format is "channels_first" else 3))
 
 
-def output_block(inputs, numfilters, priors, numclasses, is_training, data_format):
+def output_block(inputs, numfilters, numpriors, numclasses, is_training, data_format):
     """ Last layers, DBL block and output convolution layers.
     Params:
         inputs: input tensor
         numfilters: number of filters for convolution
-        priors: list of bounding box priors (Anchors)
+        numpriors: number of priors (anchors)
         numclasses: number of prediction classes (80 for COCO)
         is_training: bool, true if in training mode
         data_format: channel first or channel last
     Returns:
-        output prediction tensor
-        According to YOLOv3 paper the output tensor is 3-d of 3 box predictions per scale of
-        N × N × [3 * (4 + 1 + 80)] for the 4 bounding box offsets,1 objectness prediction,
-        and 80 (COCO dataset) class predictions.
+        output feature map
     """
     #last DBL block
     inputs = conv_block(inputs, 2 * numfilters, 3, 1, is_training, data_format)
 
-    #output convolution layer [N, 3*85, W, H]
-    inputs = tf.layers.conv2d(inputs, filters=len(priors) * (5 + numclasses),
+    #output convolution layer [N, numpriors*(4+1+numclasses), W, H]
+    return tf.layers.conv2d(inputs, filters=numpriors * (5 + numclasses),
                                 kernel_size=1, strides=1,
                                 data_format=data_format, use_bias=True,
                                 bias_initializer=tf.zeros_initializer())
 
+
+# Transforms prediction from Yolo
+def transform_pred(predictions, priors, img_size, numclasses, data_format):
+    """ Transforms convolution feature map from Yolo. According to YOLOv3 paper the output
+        tensor is 3-d of 3 box predictions per scale of N × N × [3 * (4 + 1 + 80)] for
+        the 4 bounding box offsets,1 objectness prediction, and 80 (COCO dataset) class predictions.
+    Params:
+        predictions: output tensor from Yolo
+        priors: list of bounding box priors (Anchors)
+        img_size: tuple (W, H)
+        numclasses: number of prediction classes (80 for COCO)
+        data_format: channel first or channel last
+    Returns:
+        transformed bounding box predictions and confidence score as 2-d tensor
+        b_x, b_y, b_w, b_h, sigma(t_o)
+    """
+
+    shape = predictions.get_shape().as_list()
+    if data_format is 'channels_first':
+        predictions = tf.transpose(predictions, [0,2,3,1])
+
+    #get grid dimensions (H, W), channels_first is [N,C,H,W]
+    grid_dim = shape[2:] if data_format is 'channels_first' else shape[1:3]
+    #number of grid cells
+    numcells = grid_dim[0] * grid_dim[1]
+
+    predictions = tf.reshape(predictions, [-1, len(priors) * numcells, 5 + numclasses])
     """
         Notes from YOLOv3 paper
         t_x, t_y, t_w, t_h, t_o = parameter predictions from Yolo
@@ -114,6 +138,18 @@ def output_block(inputs, numfilters, priors, numclasses, is_training, data_forma
         b_w = p_{w}e^{t_w}     where p_w is the prior width
         b_h = p_{h}e^{t_h}     where p_h is the prior height
         \sigma(t_o) = box confidence score
+        c_x, c_y, p_w, p_h  normalized by image width, height
+        image size is larger than detection map by a factor of stride
     """
+    txty, thtw, to, classes = tf.split(predictions, [2,2,1,numclasses], axis=-1)
 
-    pass
+    #compute the grid cell corner of priors (c_x, c_y)
+
+    stride = (img_size[0] // grid_dim[0], img_size[1] // grid_dim[1])
+    #bxby needs to be multiplied by a factor of stride
+    bxby = (tf.nn.sigmoid(txty) + cxcy) * stride
+    bhbw = priors * tf.exp(thtw)
+    confidence = tf.nn.sigmoid(to)
+    classes = tf.nn.sigmoid(classes)
+
+    return tf.concat([bxby, bhbw, confidence, classes], axis=-1)
