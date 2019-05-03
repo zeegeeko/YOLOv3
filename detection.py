@@ -117,7 +117,7 @@ def transform_pred(predictions, priors, img_size, numclasses, data_format):
         data_format: channel first or channel last
     Returns:
         transformed bounding box predictions and confidence score as 2-d tensor
-        b_x, b_y, b_w, b_h, sigma(t_o)
+        b_x, b_y, b_w, b_h, sigma(t_o), classes
     """
 
     shape = predictions.get_shape().as_list()
@@ -143,9 +143,18 @@ def transform_pred(predictions, priors, img_size, numclasses, data_format):
     """
     txty, thtw, to, classes = tf.split(predictions, [2,2,1,numclasses], axis=-1)
 
-    #compute the grid cell corner of priors (c_x, c_y)
+    #compute the offset from grid cell corner of priors (c_x, c_y)
+    gridx = tf.range(grid_dim[0], dtype=tf.float32)
+    gridy = tf.range(grid_dim[1], dtype=tf.float32)
+    cx, cy = tf.meshgrid(gridx, gridy)
+    cx = tf.reshape(cx, (-1, 1))
+    cy = tf.reshape(cy, (-1, 1))
+    cxcy = tf.concat([cx, cy], axis=-1)
+    cxcy = tf.tile(cxcy, [1, len(priors)])
+    cxcy = tf.reshape(cxcy, [1, -1, 2])
 
     stride = (img_size[0] // grid_dim[0], img_size[1] // grid_dim[1])
+    priors = tf.tile(priors, [numcells, 1])
     #bxby needs to be multiplied by a factor of stride
     bxby = (tf.nn.sigmoid(txty) + cxcy) * stride
     bhbw = priors * tf.exp(thtw)
