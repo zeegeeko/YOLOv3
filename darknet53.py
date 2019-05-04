@@ -66,7 +66,7 @@ def residual_block(inputs, numfilters, stride=1, mult=1, is_training=False, data
     #Loop for constructing residual blocks
     for i in mult:
         res = inputs
-        
+
         inputs = conv2d_fixed_padding(inputs, numfilters, 1, stride, data_format)
         #batch normalization before ReLU
         inputs = batch_norm(inputs, is_training, data_format)
