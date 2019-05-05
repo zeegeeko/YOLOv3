@@ -1,5 +1,7 @@
 """ Helpers for constructing the detection layers after darknet53 """
 
+import tensorflow as tf
+
 #From YOLOv3 paper https://pjreddie.com/media/files/papers/YOLOv3.pdf, bounding box priors
 #dervived using k-means clustering on COCO dataset
 ANCHORS = [(10,13),(16,30),(33,23),(30,61),(62,45),(59,119),(116,90),(156,198),(373,326)]

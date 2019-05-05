@@ -1,7 +1,6 @@
 """ Helpers for constructing Darknet 53 Feature Extractor implemented in TensorFlow """
 
 import tensorflow as tf
-import numpy as np
 
 #hyperparameters
 _BATCH_NORM_EPSILON = 1e-05
@@ -97,7 +96,7 @@ def conv_block(inputs, numfilters, size, stride=1, is_training=False, data_forma
 
 #Constructs the Darknet 53 model
 def darknet53(inputs, is_training, data_format):
-    """ Constructs the Darknet53 Feature Extractor
+    """ Constructs the Darknet53 Feature Extractor. FYI, there are only 52 layers
     Params:
         inputs: input tensor
         is_training: bool, True if in training mode

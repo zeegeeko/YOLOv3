@@ -16,7 +16,6 @@ class YOLOv3:
         self.iou = iou
         self.confidence = confidence
 
-
     def detect(self, inputs):
         """
         Returns:
@@ -42,7 +41,7 @@ class YOLOv3:
         detect[1] = output_block(inputs, 256, len(priors), self.numclasses, is_training=False, self.data_format)
 
         #detection scale 3
-        inputs = concat_block(route9, route1, 128, is_training=False, self.data_format)
+        inputs = concat_block(route, route1, 128, is_training=False, self.data_format)
         inputs = detection_block(inputs, 128, is_training=False, self.data_format)
         detect[2] = output_block(inputs, 128, len(priors), self.numclasses, is_training=False, self.data_format)
 
@@ -51,3 +50,5 @@ class YOLOv3:
             detect[i] = transform_pred(detect[i], priors, img_size, self.numclasses, self.data_format)
 
         detections = tf.concat(detect, axis=1)
+
+        return detections

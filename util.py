@@ -3,8 +3,8 @@
 import numpy as np
 import itertools
 
-#Load weights from file
-def load_weights(var_list, filename):
+#Convert weights from file
+def convert_weights(var_list, filename):
     """ Loads official pre-trained YOLOv3 weights (trained on COCO dataset) and
         converts it to TensorFlow format.
         Great explanation of how the weights are structured
@@ -34,28 +34,9 @@ def load_weights(var_list, filename):
         vars = (n for n in var_list)
         weights = (n for n in weights)
 
-        #weights for darknet53
-        for i in range(52):
-            convar = next(vars)
-            #[gamma, beta, mean, variance]
-            bn_vars = list(itertools.islice(vars, 4))
-            #[beta, gamma, mean, variance]
-            bn_vars = np.transpose(bn_vars, (1,0,2,3))
-
-            for bvar in bn_vars:
-                shape = bvar.shape().as_list()
-                weight = list(itertools.islice(weights, np.prod(shape))).reshape(shape)
-                assign_list.append(tf.assign(bvar, weight))
-
-            shape = convar.shape().as_list()
-            weight = list(itertools.islice(weights, np.prod(shape))).reshape((shape[3], shape[2], shape[0], shape[1]))
-            #convert to column major
-            weight = np.transpose(weight, (2,3,1,0))
-            assign_list.append(tf.assign(convar, weight))
-
-        #weights for Yolo, 7th, 15th, 23rd layers, no batch norm, have bias weights
-        for i in range(23):
-            if i == 6 or i == 14 or i == 22:
+        for i in range(75):
+            #7th, 15th, 23rd YOLO layers have no batch norm, have bias weights
+            if i == 58 or i == 66 or i == 74:
                 #add biases [conv biases, conv weights]
                 biasvar = next(vars)
                 shape = biasvar.shape().as_list()
@@ -69,7 +50,9 @@ def load_weights(var_list, filename):
                 assign_list.append(tf.assign(convar, weight))
             else:
                 convar = next(vars)
+                #[gamma, beta, mean, variance]
                 bn_vars = list(itertools.islice(vars, 4))
+                #[beta, gamma, mean, variance]
                 bn_vars = np.transpose(bn_vars, (1,0,2,3))
 
                 for bvar in bn_vars:
@@ -79,18 +62,38 @@ def load_weights(var_list, filename):
 
                 shape = convar.shape().as_list()
                 weight = list(itertools.islice(weights, np.prod(shape))).reshape((shape[3], shape[2], shape[0], shape[1]))
+                #convert to column major
                 weight = np.transpose(weight, (2,3,1,0))
                 assign_list.append(tf.assign(convar, weight))
 
     return assign_list
+    
+
+def box_corners(inputs):
+    """ Converts Yolo box detections from center_x, center_y, box_height, box_width to
+        top left and bottom right coordinates. Makes it easier to compute IOU
+    Params:
+        inputs: output tensor from YOLO detection
+    Returns:
+        Converted tensor [top_left_x, top_left_y, bottom_right_x, bottom_right_y, confidence, classes]
+    """
+    bx, by, bw, bh, conf, classes = tf.split(inputs, [1,1,1,1,1,-1], axis=-1)
+
+    topx = bx - (bw / 2)
+    topy = by - (bh / 2)
+    bottomx = bx + (bw / 2)
+    bottomy = by + (bh / 2)
+
+    return tf.concat([topx, topy, bottomx, bottomy, conf, classes], axis=-1)
 
 
-
-
-
+#TODO
 def non_max_supression():
+    """ Class-wise non max suppression
+
+    """
     pass
 
-
+#TODO
 def generate_boxes():
     pass
