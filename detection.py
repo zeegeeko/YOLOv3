@@ -1,6 +1,7 @@
 """ Helpers for constructing the detection layers after darknet53 """
 
 import tensorflow as tf
+from darknet53 import *
 
 #From YOLOv3 paper https://pjreddie.com/media/files/papers/YOLOv3.pdf, bounding box priors
 #dervived using k-means clustering on COCO dataset
