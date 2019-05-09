@@ -1,0 +1,366 @@
+<tf.Variable 'yolov3/conv2d/kernel:0' shape=(3, 3, 3, 32) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization/gamma:0' shape=(32,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization/beta:0' shape=(32,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization/moving_mean:0' shape=(32,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization/moving_variance:0' shape=(32,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_1/kernel:0' shape=(3, 3, 32, 64) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_1/gamma:0' shape=(64,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_1/beta:0' shape=(64,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_1/moving_mean:0' shape=(64,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_1/moving_variance:0' shape=(64,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_2/kernel:0' shape=(1, 1, 64, 32) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_2/gamma:0' shape=(32,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_2/beta:0' shape=(32,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_2/moving_mean:0' shape=(32,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_2/moving_variance:0' shape=(32,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_3/kernel:0' shape=(3, 3, 32, 64) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_3/gamma:0' shape=(64,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_3/beta:0' shape=(64,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_3/moving_mean:0' shape=(64,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_3/moving_variance:0' shape=(64,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_4/kernel:0' shape=(3, 3, 64, 128) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_4/gamma:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_4/beta:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_4/moving_mean:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_4/moving_variance:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_5/kernel:0' shape=(1, 1, 128, 64) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_5/gamma:0' shape=(64,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_5/beta:0' shape=(64,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_5/moving_mean:0' shape=(64,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_5/moving_variance:0' shape=(64,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_6/kernel:0' shape=(3, 3, 64, 128) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_6/gamma:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_6/beta:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_6/moving_mean:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_6/moving_variance:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_7/kernel:0' shape=(1, 1, 128, 64) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_7/gamma:0' shape=(64,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_7/beta:0' shape=(64,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_7/moving_mean:0' shape=(64,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_7/moving_variance:0' shape=(64,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_8/kernel:0' shape=(3, 3, 64, 128) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_8/gamma:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_8/beta:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_8/moving_mean:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_8/moving_variance:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_9/kernel:0' shape=(3, 3, 128, 256) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_9/gamma:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_9/beta:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_9/moving_mean:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_9/moving_variance:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_10/kernel:0' shape=(1, 1, 256, 128) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_10/gamma:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_10/beta:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_10/moving_mean:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_10/moving_variance:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_11/kernel:0' shape=(3, 3, 128, 256) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_11/gamma:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_11/beta:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_11/moving_mean:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_11/moving_variance:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_12/kernel:0' shape=(1, 1, 256, 128) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_12/gamma:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_12/beta:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_12/moving_mean:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_12/moving_variance:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_13/kernel:0' shape=(3, 3, 128, 256) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_13/gamma:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_13/beta:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_13/moving_mean:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_13/moving_variance:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_14/kernel:0' shape=(1, 1, 256, 128) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_14/gamma:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_14/beta:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_14/moving_mean:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_14/moving_variance:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_15/kernel:0' shape=(3, 3, 128, 256) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_15/gamma:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_15/beta:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_15/moving_mean:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_15/moving_variance:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_16/kernel:0' shape=(1, 1, 256, 128) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_16/gamma:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_16/beta:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_16/moving_mean:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_16/moving_variance:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_17/kernel:0' shape=(3, 3, 128, 256) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_17/gamma:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_17/beta:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_17/moving_mean:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_17/moving_variance:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_18/kernel:0' shape=(1, 1, 256, 128) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_18/gamma:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_18/beta:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_18/moving_mean:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_18/moving_variance:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_19/kernel:0' shape=(3, 3, 128, 256) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_19/gamma:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_19/beta:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_19/moving_mean:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_19/moving_variance:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_20/kernel:0' shape=(1, 1, 256, 128) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_20/gamma:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_20/beta:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_20/moving_mean:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_20/moving_variance:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_21/kernel:0' shape=(3, 3, 128, 256) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_21/gamma:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_21/beta:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_21/moving_mean:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_21/moving_variance:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_22/kernel:0' shape=(1, 1, 256, 128) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_22/gamma:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_22/beta:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_22/moving_mean:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_22/moving_variance:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_23/kernel:0' shape=(3, 3, 128, 256) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_23/gamma:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_23/beta:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_23/moving_mean:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_23/moving_variance:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_24/kernel:0' shape=(1, 1, 256, 128) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_24/gamma:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_24/beta:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_24/moving_mean:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_24/moving_variance:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_25/kernel:0' shape=(3, 3, 128, 256) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_25/gamma:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_25/beta:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_25/moving_mean:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_25/moving_variance:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_26/kernel:0' shape=(3, 3, 256, 512) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_26/gamma:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_26/beta:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_26/moving_mean:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_26/moving_variance:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_27/kernel:0' shape=(1, 1, 512, 256) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_27/gamma:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_27/beta:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_27/moving_mean:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_27/moving_variance:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_28/kernel:0' shape=(3, 3, 256, 512) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_28/gamma:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_28/beta:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_28/moving_mean:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_28/moving_variance:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_29/kernel:0' shape=(1, 1, 512, 256) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_29/gamma:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_29/beta:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_29/moving_mean:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_29/moving_variance:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_30/kernel:0' shape=(3, 3, 256, 512) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_30/gamma:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_30/beta:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_30/moving_mean:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_30/moving_variance:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_31/kernel:0' shape=(1, 1, 512, 256) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_31/gamma:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_31/beta:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_31/moving_mean:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_31/moving_variance:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_32/kernel:0' shape=(3, 3, 256, 512) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_32/gamma:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_32/beta:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_32/moving_mean:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_32/moving_variance:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_33/kernel:0' shape=(1, 1, 512, 256) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_33/gamma:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_33/beta:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_33/moving_mean:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_33/moving_variance:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_34/kernel:0' shape=(3, 3, 256, 512) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_34/gamma:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_34/beta:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_34/moving_mean:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_34/moving_variance:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_35/kernel:0' shape=(1, 1, 512, 256) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_35/gamma:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_35/beta:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_35/moving_mean:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_35/moving_variance:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_36/kernel:0' shape=(3, 3, 256, 512) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_36/gamma:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_36/beta:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_36/moving_mean:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_36/moving_variance:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_37/kernel:0' shape=(1, 1, 512, 256) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_37/gamma:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_37/beta:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_37/moving_mean:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_37/moving_variance:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_38/kernel:0' shape=(3, 3, 256, 512) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_38/gamma:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_38/beta:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_38/moving_mean:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_38/moving_variance:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_39/kernel:0' shape=(1, 1, 512, 256) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_39/gamma:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_39/beta:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_39/moving_mean:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_39/moving_variance:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_40/kernel:0' shape=(3, 3, 256, 512) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_40/gamma:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_40/beta:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_40/moving_mean:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_40/moving_variance:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_41/kernel:0' shape=(1, 1, 512, 256) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_41/gamma:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_41/beta:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_41/moving_mean:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_41/moving_variance:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_42/kernel:0' shape=(3, 3, 256, 512) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_42/gamma:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_42/beta:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_42/moving_mean:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_42/moving_variance:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_43/kernel:0' shape=(3, 3, 512, 1024) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_43/gamma:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_43/beta:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_43/moving_mean:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_43/moving_variance:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_44/kernel:0' shape=(1, 1, 1024, 512) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_44/gamma:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_44/beta:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_44/moving_mean:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_44/moving_variance:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_45/kernel:0' shape=(3, 3, 512, 1024) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_45/gamma:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_45/beta:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_45/moving_mean:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_45/moving_variance:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_46/kernel:0' shape=(1, 1, 1024, 512) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_46/gamma:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_46/beta:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_46/moving_mean:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_46/moving_variance:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_47/kernel:0' shape=(3, 3, 512, 1024) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_47/gamma:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_47/beta:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_47/moving_mean:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_47/moving_variance:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_48/kernel:0' shape=(1, 1, 1024, 512) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_48/gamma:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_48/beta:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_48/moving_mean:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_48/moving_variance:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_49/kernel:0' shape=(3, 3, 512, 1024) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_49/gamma:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_49/beta:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_49/moving_mean:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_49/moving_variance:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_50/kernel:0' shape=(1, 1, 1024, 512) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_50/gamma:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_50/beta:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_50/moving_mean:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_50/moving_variance:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_51/kernel:0' shape=(3, 3, 512, 1024) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_51/gamma:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_51/beta:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_51/moving_mean:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_51/moving_variance:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_52/kernel:0' shape=(1, 1, 1024, 512) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_52/gamma:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_52/beta:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_52/moving_mean:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_52/moving_variance:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_53/kernel:0' shape=(3, 3, 512, 1024) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_53/gamma:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_53/beta:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_53/moving_mean:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_53/moving_variance:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_54/kernel:0' shape=(1, 1, 1024, 512) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_54/gamma:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_54/beta:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_54/moving_mean:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_54/moving_variance:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_55/kernel:0' shape=(3, 3, 512, 1024) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_55/gamma:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_55/beta:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_55/moving_mean:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_55/moving_variance:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_56/kernel:0' shape=(1, 1, 1024, 512) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_56/gamma:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_56/beta:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_56/moving_mean:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_56/moving_variance:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_57/kernel:0' shape=(3, 3, 512, 1024) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_57/gamma:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_57/beta:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_57/moving_mean:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_57/moving_variance:0' shape=(1024,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_58/kernel:0' shape=(1, 1, 1024, 255) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_58/bias:0' shape=(255,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_59/kernel:0' shape=(1, 1, 512, 256) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_58/gamma:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_58/beta:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_58/moving_mean:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_58/moving_variance:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_60/kernel:0' shape=(1, 1, 768, 256) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_59/gamma:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_59/beta:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_59/moving_mean:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_59/moving_variance:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_61/kernel:0' shape=(3, 3, 256, 512) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_60/gamma:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_60/beta:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_60/moving_mean:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_60/moving_variance:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_62/kernel:0' shape=(1, 1, 512, 256) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_61/gamma:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_61/beta:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_61/moving_mean:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_61/moving_variance:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_63/kernel:0' shape=(3, 3, 256, 512) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_62/gamma:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_62/beta:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_62/moving_mean:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_62/moving_variance:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_64/kernel:0' shape=(1, 1, 512, 256) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_63/gamma:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_63/beta:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_63/moving_mean:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_63/moving_variance:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_65/kernel:0' shape=(3, 3, 256, 512) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_64/gamma:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_64/beta:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_64/moving_mean:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_64/moving_variance:0' shape=(512,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_66/kernel:0' shape=(1, 1, 512, 255) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_66/bias:0' shape=(255,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_67/kernel:0' shape=(1, 1, 256, 128) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_65/gamma:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_65/beta:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_65/moving_mean:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_65/moving_variance:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_68/kernel:0' shape=(1, 1, 384, 128) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_66/gamma:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_66/beta:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_66/moving_mean:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_66/moving_variance:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_69/kernel:0' shape=(3, 3, 128, 256) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_67/gamma:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_67/beta:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_67/moving_mean:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_67/moving_variance:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_70/kernel:0' shape=(1, 1, 256, 128) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_68/gamma:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_68/beta:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_68/moving_mean:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_68/moving_variance:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_71/kernel:0' shape=(3, 3, 128, 256) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_69/gamma:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_69/beta:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_69/moving_mean:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_69/moving_variance:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_72/kernel:0' shape=(1, 1, 256, 128) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_70/gamma:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_70/beta:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_70/moving_mean:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_70/moving_variance:0' shape=(128,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_73/kernel:0' shape=(3, 3, 128, 256) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_71/gamma:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_71/beta:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_71/moving_mean:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/batch_normalization_71/moving_variance:0' shape=(256,) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_74/kernel:0' shape=(1, 1, 256, 255) dtype=float32_ref>
+<tf.Variable 'yolov3/conv2d_74/bias:0' shape=(255,) dtype=float32_ref>

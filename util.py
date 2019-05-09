@@ -1,5 +1,6 @@
 """ Various Utility Functions """
 
+import tensorflow as tf
 import numpy as np
 import itertools
 
@@ -38,14 +39,14 @@ def convert_weights(var_list, filename):
             #7th, 15th, 23rd YOLO layers have no batch norm, have bias weights
             if i == 58 or i == 66 or i == 74:
                 #add biases [conv biases, conv weights]
+                convar = next(vars)
                 biasvar = next(vars)
-                shape = biasvar.shape().as_list()
-                weight = list(itertools.islice(weights, np.prod(shape))).reshape(shape)
+                shape = biasvar.shape.as_list()
+                weight = np.asarray(list(itertools.islice(weights, np.prod(shape).item()))).reshape(shape)
                 assign_list.append(tf.assign(biasvar, weight))
 
-                convar = next(vars)
-                shape = convar.shape().as_list()
-                weight = list(itertools.islice(weights, np.prod(shape))).reshape((shape[3], shape[2], shape[0], shape[1]))
+                shape = convar.shape.as_list()
+                weight = np.asarray(list(itertools.islice(weights, np.prod(shape).item()))).reshape((shape[3], shape[2], shape[0], shape[1]))
                 weight = np.transpose(weight, (2,3,1,0))
                 assign_list.append(tf.assign(convar, weight))
             else:
@@ -53,21 +54,22 @@ def convert_weights(var_list, filename):
                 #[gamma, beta, mean, variance]
                 bn_vars = list(itertools.islice(vars, 4))
                 #[beta, gamma, mean, variance]
-                bn_vars = np.transpose(bn_vars, (1,0,2,3))
+                #bn_vars = np.transpose(bn_vars, (1,0,2,3))
+                bn_vars = [bn_vars[1],bn_vars[0],bn_vars[2],bn_vars[3]]
 
                 for bvar in bn_vars:
-                    shape = bvar.shape().as_list()
-                    weight = list(itertools.islice(weights, np.prod(shape))).reshape(shape)
+                    shape = bvar.shape.as_list()
+                    weight = np.asarray(list(itertools.islice(weights, np.prod(shape).item()))).reshape(shape)
                     assign_list.append(tf.assign(bvar, weight))
 
-                shape = convar.shape().as_list()
-                weight = list(itertools.islice(weights, np.prod(shape))).reshape((shape[3], shape[2], shape[0], shape[1]))
+                shape = convar.shape.as_list()
+                weight = np.asarray(list(itertools.islice(weights, np.prod(shape).item()))).reshape((shape[3], shape[2], shape[0], shape[1]))
                 #convert to column major
                 weight = np.transpose(weight, (2,3,1,0))
                 assign_list.append(tf.assign(convar, weight))
 
     return assign_list
-    
+
 
 def box_corners(inputs):
     """ Converts Yolo box detections from center_x, center_y, box_height, box_width to
@@ -87,13 +89,38 @@ def box_corners(inputs):
     return tf.concat([topx, topy, bottomx, bottomy, conf, classes], axis=-1)
 
 
-#TODO
-def non_max_supression():
-    """ Class-wise non max suppression
-
+def non_max_supression(inputs, max_output, conf_threshold, iou_threshold):
+    """ Class-wise non max suppression. Several articles have reported performance issues
+        using tf.image.non_max_supression(). However, i don't feel like implementing my own in
+        numpy at the moment.
+    Params:
+        inputs: tensor of box coordinates and confidence value
+        max_output: Scalar integer Tensor for max number of boxes for tf nms function
+        conf_threshold: Confidence threshold
+        iou_threshold: Intersection over Union threshold
+    Returns:
+        list of dictionary: key: class, value: list of boxes for class [(box, confidence)]
     """
+    #Step: zero out box predictions with confidence less than threshold
+    bool_mask = np.expand_dims((inputs[:,:,4] > conf_threshold), axis=-1)
+    clean_predictions = inputs * mask
+
+    batch_size = clean_predictions.shape[0]
+
+    #iterate through the batch
+    for ind in range(batch_size):
+        img_pred = clean_predictions[ind]
+        #get only indexes where it's non-zero
+        img_pred = img_pred[np.nonzero(img_pred)].reshape(-1, img_pred.shape[-1])
+        #get the index of the class with largest classification
+        classes = np.argmax(img_pred[:,5:], axis=-1)
+
+        unique_classes = list(set(classes.reshape(-1)))
+
+
     pass
 
+
 #TODO
-def generate_boxes():
+def draw_boxes():
     pass

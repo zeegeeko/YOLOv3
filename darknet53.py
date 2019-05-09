@@ -61,9 +61,9 @@ def conv2d_fixed_padding(inputs, filters, kernel_size, strides, data_format):
 
 
 #Helper for constructing residual block
-def residual_block(inputs, numfilters, stride=1, mult=1, is_training=False, data_format):
+def residual_block(inputs, numfilters, stride, mult, is_training, data_format):
     #Loop for constructing residual blocks
-    for i in mult:
+    for i in range(mult):
         res = inputs
 
         inputs = conv2d_fixed_padding(inputs, numfilters, 1, stride, data_format)
@@ -84,7 +84,7 @@ def residual_block(inputs, numfilters, stride=1, mult=1, is_training=False, data
     return inputs
 
 #Helper for convolution block
-def conv_block(inputs, numfilters, size, stride=1, is_training=False, data_format):
+def conv_block(inputs, numfilters, size, stride, is_training, data_format):
     #convolution
     inputs = conv2d_fixed_padding(inputs, numfilters, size, stride, data_format)
     #batch normalization before ReLU

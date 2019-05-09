@@ -160,7 +160,7 @@ def transform_pred(predictions, priors, img_size, numclasses, data_format):
     priors = tf.tile(priors, [numcells, 1])
     #bxby needs to be multiplied by a factor of stride
     bxby = (tf.nn.sigmoid(txty) + cxcy) * stride
-    bhbw = priors * tf.exp(thtw)
+    bhbw = tf.cast(priors, tf.float32) * tf.exp(thtw)
     confidence = tf.nn.sigmoid(to)
     classes = tf.nn.sigmoid(classes)
 

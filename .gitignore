@@ -1,2 +1,6 @@
 # ignore weights file
 *.weights
+Data/*
+__pycache__/*
+.ipynb_checkpoints/*
+.DS_Store
