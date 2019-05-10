@@ -73,7 +73,7 @@ def convert_weights(var_list, filename):
 
 def box_corners(inputs):
     """ Converts Yolo box detections from center_x, center_y, box_height, box_width to
-        top left and bottom right coordinates. Makes it easier to compute IOU
+        top left and bottom right coordinates (diagonals). Required for NMS
     Params:
         inputs: output tensor from YOLO detection
     Returns:
@@ -89,7 +89,7 @@ def box_corners(inputs):
     return tf.concat([topx, topy, bottomx, bottomy, conf, classes], axis=-1)
 
 
-def non_max_supression(inputs, max_output, conf_threshold, iou_threshold):
+def non_max_suppression(inputs, max_output_size, conf_threshold, iou_threshold):
     """ Class-wise non max suppression. Several articles have reported performance issues
         using tf.image.non_max_supression(). However, i don't feel like implementing my own in
         numpy at the moment.
@@ -99,28 +99,61 @@ def non_max_supression(inputs, max_output, conf_threshold, iou_threshold):
         conf_threshold: Confidence threshold
         iou_threshold: Intersection over Union threshold
     Returns:
-        list of dictionary: key: class, value: list of boxes for class [(box, confidence)]
+        list of dictionaries: key: class, value: list of boxes for class [(box, confidence)]
     """
-    #Step: zero out box predictions with confidence less than threshold
-    bool_mask = np.expand_dims((inputs[:,:,4] > conf_threshold), axis=-1)
-    clean_predictions = inputs * mask
+    batch_size = inputs.get_shape().as_list()[0]
+    batch_dicts = []
+    numclasses = inputs[:,:,5:].get_shape()[2]
 
-    batch_size = clean_predictions.shape[0]
-
-    #iterate through the batch
+    #iterate through the batch (image)
     for ind in range(batch_size):
-        img_pred = clean_predictions[ind]
-        #get only indexes where it's non-zero
-        img_pred = img_pred[np.nonzero(img_pred)].reshape(-1, img_pred.shape[-1])
+        boxes = inputs[ind, :, :]
+        #filter out boxes that are not within confidence threshold
+        boxes = tf.boolean_mask(boxes, boxes[:,4] > conf_threshold)
         #get the index of the class with largest classification
-        classes = np.argmax(img_pred[:,5:], axis=-1)
+        classes = tf.argmax(boxes[:,5:], axis=-1)
+        classes = tf.expand_dims(classes, axis=-1)
+        #concatenate boxes and max class for each box
+        boxes = tf.concat([boxes[:,:5], tf.cast(classes, dtype=tf.float32)], axis=-1)
 
-        unique_classes = list(set(classes.reshape(-1)))
+        #Get a list of the unique classes
+        #unique_classes = tf.unique(tf.reshape(classes, [-1]))
 
-
-    pass
+        class_dict = {}
+        for cls in range(numclasses):
+            #loop through the unique classes and mask
+            cls_mask = tf.equal(boxes[:, 5], tf.cast(cls,dtype=tf.float32))
+            if tf.rank(cls_mask) != 0:
+                cls_boxes = tf.boolean_mask(boxes, cls_mask)
+                box_attr, box_conf, _ = tf.split(cls_boxes, [4, 1, -1], axis=-1)
+                box_conf = tf.reshape(box_conf, [-1])
+                idxs = tf.image.non_max_suppression(box_attr, box_conf, max_output_size, iou_threshold)
+                cls_boxes = tf.gather(cls_boxes, idxs)
+                class_dict[cls] = cls_boxes[:, :5]
+        batch_dicts.append(class_dict)
+    return batch_dicts
 
 
 #TODO
 def draw_boxes():
     pass
+
+
+#Load images
+def load_image_batch(file_list, image_size):
+
+    pass
+
+#Load class names
+def class_names(filename):
+    """ Loads file of class names to list
+    Params:
+        filename: string, filename
+    Returns:
+        list of class names
+    """
+    names = []
+    with open(filename, 'r') as file:
+        for name in file:
+            names.append(name.rstrip())
+        return names

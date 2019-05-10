@@ -10,7 +10,7 @@ from util import *
 
 class YOLOv3:
 
-    def __init__(self, img_size, numclasses, priors, iou, confidence, data_format):
+    def __init__(self, img_size, numclasses, priors, iou, confidence, max_output_size, data_format):
 
         self.img_size = img_size
         self.data_format = data_format
@@ -18,6 +18,7 @@ class YOLOv3:
         self.priors = priors
         self.iou = iou
         self.confidence = confidence
+        self.max_output_size = max_output_size
 
     def detect(self, inputs):
         """
@@ -53,4 +54,8 @@ class YOLOv3:
             for i in range(3):
                 detect[i] = transform_pred(detect[i], self.priors[i * 3:(i * 3) + 3], self.img_size, self.numclasses, self.data_format)
 
-            return tf.concat(detect, axis=1)
+            #convert box coordinates to diagonals
+            detections = box_corners(tf.concat(detect, axis=1))
+
+            #Non-max suppression
+            return non_max_suppression(detections, self.max_output_size, self.confidence, self.iou)
