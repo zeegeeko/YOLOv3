@@ -3,6 +3,7 @@
 import tensorflow as tf
 import numpy as np
 import itertools
+from PIL import Image, ImageDraw, ImageFont
 
 #Convert weights from file
 def convert_weights(var_list, filename):
@@ -134,15 +135,54 @@ def non_max_suppression(inputs, max_output_size, conf_threshold, iou_threshold):
     return batch_dicts
 
 
-#TODO
-def draw_boxes():
-    pass
+#Draws boxes on image using PIL
+def draw_boxes(filename, class_names, boxes_dict, input_size):
+    """ Draws boxes on image with class name and confidence values
+    Params:
+        filename: file name of image
+        class_names: list of class names
+        boxes_dict: dictionary of class to box for image
+        input_size: Model input size (needed to recompute coordinates to original size of image)
+    Returns:
+        Saves image with detections_filename.jpg
+    """
+    image = Image.open(filename)
+    draw = ImageDraw.Draw(image)
+
+    #Iterate through each class in dictionary
+    for cls in range(len(class_names)):
+        color = tuple(np.random.randint(0, 256, 3))
+        if len(boxes_dict[cls]) != 0:
+            class_boxes = boxes_dict[cls]
+            #Iterate through each box in class
+            for box in class_boxes:
+                #Convert box dimensions to match proportions of image size
+                ratio = np.array(image.size) / np.array(input_size)
+                coord = box[:4].reshape(2,2) * ratio
+                coord = list(coord.reshape(-1))
+                conf = box[4] * 100
+                draw.rectangle(coord, outline=color)
+                draw.text(coord[:2], '{} {:.2f}%'.format(class_names[cls], conf), fill=color)
+    img = image.convert('RGB')
+    img.save('./output/detection_' + filename.split('/')[-1])
 
 
 #Load images
-def load_image_batch(file_list, image_size):
-
-    pass
+def load_image_batch(file_list, input_size):
+    """ Loads images from list of files as an array
+    Params:
+        file_list: list of filenames
+        input_size: (W,H) input size of model
+    Returns:
+        Numpy array
+    """
+    batch = []
+    for file in file_list:
+        img = Image.open(file).resize(input_size)
+        img = np.array(img, dtype=np.float32)
+        img = np.expand_dims(img[:, :, :3], axis=0)
+        batch.append(img)
+    return np.concatenate(batch)
 
 #Load class names
 def class_names(filename):
