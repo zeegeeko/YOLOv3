@@ -51,8 +51,8 @@ class YOLOv3:
             detect.append(output_block(inputs, 128, 3, self.numclasses, False, self.data_format))
 
             #transform predictions
-            for i in range(3):
-                detect[i] = transform_pred(detect[i], self.priors[i * 3:(i * 3) + 3], self.img_size, self.numclasses, self.data_format)
+            for i, j in enumerate(range(2,-1,-1)):
+                detect[i] = transform_pred(detect[i], self.priors[j * 3:(j * 3) + 3], self.img_size, self.numclasses, self.data_format)
 
             #convert box coordinates to diagonals
             detections = box_corners(tf.concat(detect, axis=1))
