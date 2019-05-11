@@ -10,9 +10,18 @@ from util import *
 
 class YOLOv3:
 
-    def __init__(self, img_size, numclasses, priors, iou, confidence, max_output_size, data_format):
-
-        self.img_size = img_size
+    def __init__(self, input_size, numclasses, priors, iou, confidence, max_output_size, data_format):
+        """
+        Params:
+            input_size: (W,H) tuple of model input size usually (416,416)
+            numclasses: number of classes
+            priors: list of anchors
+            iou: Intersection over Union threshold
+            confidence: Confidence threshold
+            max_output_size: maximum number of boxes to be selected (for non max suppression)
+            data_format: channels_first of channels_last
+        """
+        self.input_size = input_size
         self.data_format = data_format
         self.numclasses = numclasses
         self.priors = priors
@@ -52,7 +61,7 @@ class YOLOv3:
 
             #transform predictions
             for i, j in enumerate(range(2,-1,-1)):
-                detect[i] = transform_pred(detect[i], self.priors[j * 3:(j * 3) + 3], self.img_size, self.numclasses, self.data_format)
+                detect[i] = transform_pred(detect[i], self.priors[j * 3:(j * 3) + 3], self.input_size, self.numclasses, self.data_format)
 
             #convert box coordinates to diagonals
             detections = box_corners(tf.concat(detect, axis=1))

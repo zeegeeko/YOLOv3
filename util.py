@@ -148,6 +148,8 @@ def draw_boxes(filename, class_names, boxes_dict, input_size):
     """
     image = Image.open(filename)
     draw = ImageDraw.Draw(image)
+    fontsize = 12
+    font = ImageFont.truetype("./resources/font/Lato-Bold.ttf", fontsize)
 
     #Iterate through each class in dictionary
     for cls in range(len(class_names)):
@@ -161,10 +163,16 @@ def draw_boxes(filename, class_names, boxes_dict, input_size):
                 coord = box[:4].reshape(2,2) * ratio
                 coord = list(coord.reshape(-1))
                 conf = box[4] * 100
-                draw.rectangle(coord, outline=color)
-                draw.text(coord[:2], '{} {:.2f}%'.format(class_names[cls], conf), fill=color)
+                draw.rectangle(coord, outline=color, width=4)
+                draw.text(coord[:2], '{} {:.2f}%'.format(class_names[cls], conf), fill=(0,0,0), font=font)
     img = image.convert('RGB')
     img.save('./output/detection_' + filename.split('/')[-1])
+
+
+#Draw boxes on video frame
+def draw_boxes_video(frame, class_names, boxes_dict, input_size):
+
+    pass
 
 
 #Load images
