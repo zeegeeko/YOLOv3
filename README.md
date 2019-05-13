@@ -6,7 +6,7 @@ See the YOLOv3 Jupyter notebook in this repository for simple demos.
 
 ![](./output/video_test.gif)
 
-![](./output/test2.jpg)
+![](./output/detection_test2.jpg)
 
 ## Citing
 arXiv paper, from the creators of YOLO: Joseph Redmon, Ali Farhadi.  
