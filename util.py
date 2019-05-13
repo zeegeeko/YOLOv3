@@ -4,6 +4,8 @@ import tensorflow as tf
 import numpy as np
 import itertools
 from PIL import Image, ImageDraw, ImageFont
+import colorsys
+import cv2
 
 #Convert weights from file
 def convert_weights(var_list, filename):
@@ -135,6 +137,16 @@ def non_max_suppression(inputs, max_output_size, conf_threshold, iou_threshold):
     return batch_dicts
 
 
+#Creates a list of RGB values, evenly spaced across hues
+def HSV2RGB(num):
+    HSV_tuples = [(x*1.0/num, 0.5, 0.9) for x in range(num)]
+    RGB_tuples = map(lambda x: colorsys.hsv_to_rgb(*x), HSV_tuples)
+    colorlist = []
+    for rgb in list(RGB_tuples):
+        colorlist.append((round(rgb[0]*255),round(rgb[1]*255),round(rgb[2]*255)))
+    return colorlist
+
+
 #Draws boxes on image using PIL
 def draw_boxes(filename, class_names, boxes_dict, input_size):
     """ Draws boxes on image with class name and confidence values
@@ -150,29 +162,52 @@ def draw_boxes(filename, class_names, boxes_dict, input_size):
     draw = ImageDraw.Draw(image)
     fontsize = 12
     font = ImageFont.truetype("./resources/font/Lato-Bold.ttf", fontsize)
+    colorlist = HSV2RGB(len(class_names))
+    #Convert box dimensions to match proportions of image size
+    ratio = np.array(image.size) / np.array(input_size)
 
     #Iterate through each class in dictionary
     for cls in range(len(class_names)):
-        color = tuple(np.random.randint(0, 256, 3))
         if len(boxes_dict[cls]) != 0:
             class_boxes = boxes_dict[cls]
             #Iterate through each box in class
             for box in class_boxes:
-                #Convert box dimensions to match proportions of image size
-                ratio = np.array(image.size) / np.array(input_size)
                 coord = box[:4].reshape(2,2) * ratio
                 coord = list(coord.reshape(-1))
                 conf = box[4] * 100
-                draw.rectangle(coord, outline=color, width=4)
+                draw.rectangle(coord, outline=colorlist[cls], width=4)
                 draw.text(coord[:2], '{} {:.2f}%'.format(class_names[cls], conf), fill=(0,0,0), font=font)
     img = image.convert('RGB')
     img.save('./output/detection_' + filename.split('/')[-1])
 
 
 #Draw boxes on video frame
-def draw_boxes_video(frame, class_names, boxes_dict, input_size):
+def draw_boxes_video(frame, class_names, boxes_dict, vid_size, input_size):
+    """ Processes a frame from VideoCapture using OpenCV and draws the bounding boxes
+    Params:
+        frame: video frame from OpenCV
+        class_names: list of class names
+        boxes_dict: class to boxes dictionary from YOLO
+        vid_size: actual dimensions of video
+        input_size: YOLO model input size
+    Return:
+        Processed video frame
+    """
+    colorlist = HSV2RGB(len(class_names))
+    ratio = np.array(vid_size) / np.array(input_size)
 
-    pass
+    #Iterate through dictionary
+    for cls in range(len(class_names)):
+        #Check if there are detections for class
+        if len(boxes_dict[cls]) != 0:
+            class_boxes = boxes_dict[cls]
+            for box in class_boxes:
+                coord = box[:4].reshape(2,2) * ratio
+                coord = list(coord.reshape(-1))
+                conf = box[4] * 100
+                cv2.rectangle(frame, (int(coord[0]),int(coord[1])), (int(coord[2]),int(coord[3])), colorlist[cls], 4)
+                cv2.putText(frame, '{} {:.2f}%'.format(class_names[cls], conf), (int(coord[0]),int(coord[1])),
+                                        cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 0), 1)
 
 
 #Load images
