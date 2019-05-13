@@ -1,5 +1,5 @@
 # Object Detection
-##A YOLOv3 implementation in TensorFlow
+## A YOLOv3 implementation in TensorFlow
 ___
 ![](./output/video_test.gif)
 
